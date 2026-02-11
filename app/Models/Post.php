@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     // mengizinkan perubahan
-    // protected $fillable = ['title','excerpt','body'];
+    // protected $fillable = ['title','excerpt','body'];    
 
     // melarang perubahan
     protected $guarded = ['id'];
@@ -44,5 +44,10 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Models\Category;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardPostController;
 use Termwind\Components\Raw;
 
 /*
@@ -36,7 +36,7 @@ Route::get('/about', function () {
         "email"=>"ferdy.transafe@gmail.com",
         "image"=>"ferdybatik.jpeg"
     ]); 
-});
+})->name('about.index');
 
 // Halaman Banyak Post ==> index post nya
 Route::get('/posts', [PostController::class, 'index']);
@@ -63,4 +63,6 @@ Route::get('/dashboard', function()
 {
     return view('dashboard.index');
 }
-)->middleware('auth');
+)->name('dashboard.index')->middleware('auth');
+
+Route::resource('/dashboard-posts', DashboardPostController::class)->middleware('auth');
