@@ -16,9 +16,15 @@
                         <i class="bi bi-x-octagon"></i> Delete</a></li></button>
                 </form>
 
-
-                <img class="mt-3" src="https://picsum.photos/1200/400?{{ $data->category->name }}" class="img-fluid "
-                    alt="">
+                @if ($data->image)
+                    <div style="max-height: 350px; overflow:hidden;">
+                        <img class="mt-3" src="{{ asset('storage/' . $data->image) }}" class="img-fluid "
+                            alt="{{ $data->category->name }}">
+                    </div>
+                @else
+                    <img class="mt-3" src="https://picsum.photos/1200/400?{{ $data->category->name }}" class="img-fluid "
+                        alt="{{ $data->category->name }}">
+                @endif
 
                 <article class="my-3 fs-5">
                     {!! $data->body !!}

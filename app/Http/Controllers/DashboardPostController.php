@@ -44,21 +44,26 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+        /* return $request->file('image')->store('post-images'); */
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'required|image|file|mimes:jpeg,jpg,png|max:2048',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
             'body' => 'required',
         ]);
 
-        return $request->file('image')->store('post-images');
-
         //upload image
-        $image = $request->file('image');
-        $image->storeAs('posts', $image->hashName());
 
-        $validatedData['image'] = $image->hashName();
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
+        /*         $image = $request->file('image');
+         $image->storeAs('posts', $image->hashName()); */
+
+        /* $validatedData['image'] = $image->hashName(); */
+
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
@@ -109,25 +114,29 @@ class DashboardPostController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'image' => 'nullable|image|file|mimes:jpeg,jpg,png|max:2048',
             'slug' => 'required',
             'category_id' => 'required',
             'body' => 'required',
         ]);
 
+        // dd($request->oldImage);
         //check if image is uploaded
         if ($request->hasFile('image')) {
             //delete old image
-            Storage::delete('posts/' . $edit->image);
+            Storage::delete($request->oldImage);
 
             //upload new image
-            $image = $request->file('image');
-            $image->storeAs('posts', $image->hashName());
+            // $image = $request->file('image');
+            // $image->storeAs('posts', $image->hashName());
+            //baru
 
-                        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+            $validatedData['image'] = $request->file('image')->store('post-images');
+            $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
             //update product with new image
             $edit->update([
-                'image' => $image->hashName(),
+                'image' => $validatedData['image'],
                 'title' => $request->title,
                 'slug' => $request->slug,
                 'category_id' => $request->category_id,
@@ -161,6 +170,11 @@ class DashboardPostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        // dd($post);
+        if ($post->image != null) {
+            Storage::delete($post->image);
+        }
         $post->delete();
 
         return redirect('/dashboard-posts')->with('success', 'Post has been deleted!');

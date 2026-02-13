@@ -33,10 +33,7 @@
                             @if ($post->image == null)
                                 Tidak Ada Image
                             @else
-                                <img src="{{ asset('/storage/posts/' . $post->image) }}" class="rounded" style="width: 150px">
-                                <br>
-
-                                {{ $post->image }}
+                                <img src="{{ asset('storage/' . $post->image) }}" class="rounded" style="width: 150px">
                             @endif
 
                         </td>
@@ -50,7 +47,7 @@
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="{{ route('dashboard-posts.destroy', $post) }}" method="POST" class="d-inline">
+                            <form action="{{ route('dashboard-posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
