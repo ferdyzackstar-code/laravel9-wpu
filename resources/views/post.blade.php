@@ -16,13 +16,12 @@
                     </a>
                 </p>
                 @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid "
-                        alt="{{ $post->category->name }}">
+                    <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid " alt="{{ $post->category->name }}">
                 @else
                     <img src="https://picsum.photos/500/400?{{ $post->category->name }}" class="card-img-top"
                         alt="{{ $post->category->name }}">
                 @endif
-
+                
                 <article class="my-3 fs-5">
                     {!! $post->body !!}
                 </article>
