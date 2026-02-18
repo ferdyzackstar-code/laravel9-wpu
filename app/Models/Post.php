@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory, Sluggable;
 
     // mengizinkan perubahan
-    // protected $fillable = ['title','excerpt','body'];    
+    // protected $fillable = ['title','excerpt','body'];
 
     // melarang perubahan
     protected $guarded = ['id'];
@@ -19,24 +19,24 @@ class Post extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['seacrh'] ?? false, function($query, $search){
-            return $query->where('title', 'like', '%'. $search . '%')
-                        ->orWhere('body', 'like', '%' . $search . '%');
+        // SEARCH
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')->orWhere('excerpt', 'like', '%' . $search . '%');
+            });
         });
 
-        $query->when($filters['category'] ?? false, function($query, $category){
-            return $query->whereHas('category', function($query) use ($category){
+        // CATEGORY
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            $query->whereHas('category', function ($query) use ($category) {
                 $query->where('slug', $category);
             });
         });
 
-        $query->when($filters['author'] ?? false, fn($query, $author)=>
-            $query->whereHas('author', fn($query)=>
-                $query->where('username', $author)
-            )
-        );
+        // AUTHOR
+        $query->when($filters['author'] ?? false, fn($query, $author) => $query->whereHas('author', fn($query) => $query->where('username', $author)));
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -56,8 +56,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }

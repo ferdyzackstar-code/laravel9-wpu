@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@push('styles-posts')
+    <link rel="stylesheet" href="{{ asset('css/posts.css') }}">
+@endpush
+
 @section('container')
 
     <h1 class="mb-3 text-center">{{ $title }}</h1>
@@ -36,7 +40,7 @@
 
             <div class="card-body text-center">
                 <h5 class="card-title"><a href="/posts/{{ $posts[0]->slug }}"
-                        class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h5>
+                        class="text-decoration-none">{{ $posts[0]->title }}</a></h5>
                 <p>
                     <small class="text-muted">
                         By.
@@ -65,10 +69,10 @@
                 @foreach ($posts->skip(1) as $post)
                     <div class="col-md-4 mb-3">
                         <div class="card">
-                            <div class="position-absolute px-3 py-2 text-white"
-                                style="background-color: rgba(0, 0, 0, 0.7)">
-                                <a href="/posts?category={{ $post->category->slug }}"
-                                    class="text-white text-decoration-none">{{ $post->category->name }}</a>
+                            <div class="category-badge">
+                                <a href="/posts?category={{ $post->category->slug }}">
+                                    {{ $post->category->name }}
+                                </a>
                             </div>
                             @if ($post->image)
                                 <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid "

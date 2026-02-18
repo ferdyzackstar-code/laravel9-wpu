@@ -1,0 +1,422 @@
+/* =========================
+POSTS PAGE BASE
+========================= */
+.card {
+border: none;
+border-radius: 16px;
+overflow: hidden;
+transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card img {
+transition: transform 0.4s ease;
+}
+
+.card:hover img {
+transform: scale(1.05);
+}
+
+/* =========================
+FEATURED POST (POST PERTAMA)
+========================= */
+.card.mb-3 {
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card.mb-3 .card-title a {
+font-size: 1.6rem;
+font-weight: 700;
+}
+
+/* =========================
+POSTS GRID
+========================= */
+.col-md-4 .card {
+height: 100%;
+}
+
+.col-md-4 .card:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 45px rgba(13, 110, 253, 0.25);
+}
+
+/* =========================
+CATEGORY BADGE
+========================= */
+.card .position-absolute {
+border-bottom-right-radius: 12px;
+backdrop-filter: blur(6px);
+font-size: 0.85rem;
+}
+
+/* =========================
+BUTTON
+========================= */
+.btn-primary {
+border-radius: 999px;
+padding: 6px 18px;
+transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 0 15px rgba(13, 110, 253, 0.6);
+}
+
+/* =========================
+SEARCH BAR
+========================= */
+.input-group input {
+border-radius: 999px 0 0 999px;
+}
+
+.input-group .btn {
+border-radius: 0 999px 999px 0;
+}
+
+/* =========================
+LIGHT THEME
+========================= */
+[data-bs-theme="light"] .card {
+background-color: #ffffff;
+}
+
+[data-bs-theme="light"] .card-title,
+[data-bs-theme="light"] .card-text {
+color: #0f172a;
+}
+
+[data-bs-theme="light"] a {
+color: #0d6efd;
+}
+
+[data-bs-theme="light"] a:hover {
+color: #1e40af;
+}
+
+/* =========================
+DARK THEME
+========================= */
+[data-bs-theme="dark"] .card {
+background: linear-gradient(135deg, #020617, #0f172a);
+color: #e5e7eb;
+}
+
+[data-bs-theme="dark"] .card-title {
+color: #f8fafc;
+}
+
+[data-bs-theme="dark"] .card-text,
+[data-bs-theme="dark"] .text-muted {
+color: #94a3b8 !important;
+}
+
+[data-bs-theme="dark"] a {
+color: #7dd3fc;
+}
+
+[data-bs-theme="dark"] a:hover {
+color: #38bdf8;
+}
+
+/* =========================
+PAGINATION
+========================= */
+.pagination .page-link {
+border-radius: 999px;
+margin: 0 4px;
+}
+
+[data-bs-theme="dark"] .pagination .page-link {
+background-color: #020617;
+color: #7dd3fc;
+border: 1px solid #1e293b;
+}
+
+/* =========================
+SEARCH BAR - POSTS
+========================= */
+
+/* input */
+.input-group .form-control {
+border: 2px solid #38bdf8;
+background: transparent;
+color: inherit;
+transition: all 0.3s ease;
+}
+
+/* placeholder */
+.input-group .form-control::placeholder {
+color: #94a3b8;
+}
+
+/* focus effect */
+.input-group .form-control:focus {
+border-color: #0ea5e9;
+box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.35);
+background: transparent;
+}
+
+/* button */
+.input-group .btn {
+background: #38bdf8;
+border: 2px solid #38bdf8;
+color: #0f172a;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+
+/* hover button */
+.input-group .btn:hover {
+background: #0ea5e9;
+border-color: #0ea5e9;
+color: #fff;
+}
+
+[data-bs-theme="light"] .input-group .form-control {
+color: #0f172a;
+background-color: #f8fafc;
+}
+
+[data-bs-theme="light"] .input-group .form-control::placeholder {
+color: #64748b;
+}
+
+[data-bs-theme="dark"] .input-group .form-control {
+color: #e5e7eb;
+background-color: #020617;
+border-color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .input-group .form-control::placeholder {
+color: #94a3b8;
+}
+
+/* =========================
+POST TITLE
+========================= */
+
+/* judul utama (featured) */
+.card-title a {
+color: #0f172a;
+font-weight: 700;
+transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+color: #38bdf8;
+}
+
+/* judul card grid */
+.card-body .card-title {
+color: #0f172a;
+font-weight: 600;
+}
+
+/* =========================
+READ MORE BUTTON
+========================= */
+
+.btn-primary {
+background: #38bdf8;
+border-color: #38bdf8;
+color: #0f172a;
+font-weight: 600;
+transition: background-color .3s ease, transform .2s ease;
+}
+
+.btn-primary:hover {
+background: #0ea5e9;
+border-color: #0ea5e9;
+color: #ffffff;
+}
+
+/* =========================
+DARK MODE FIX
+========================= */
+
+[data-bs-theme="dark"] .card {
+background-color: #020617;
+border-color: #1e293b;
+}
+
+[data-bs-theme="dark"] .card-title a,
+[data-bs-theme="dark"] .card-body .card-title {
+color: #e5e7eb;
+}
+
+[data-bs-theme="dark"] .card-title a:hover {
+color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+color: #020617;
+}
+
+[data-bs-theme="light"] .card {
+background-color: #ffffff;
+}
+
+/* =========================
+CARD - LIGHT MODE
+========================= */
+
+[data-bs-theme="light"] .card {
+background-color: #f8fafc; /* soft blue-gray */
+border: 1px solid #e2e8f0;
+box-shadow: 0 10px 20px rgba(2, 6, 23, 0.05);
+transition: all 0.3s ease;
+}
+
+/* hover biar card naik dikit */
+[data-bs-theme="light"] .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 16px 30px rgba(2, 6, 23, 0.08);
+}
+
+/* =========================
+CARD - DARK MODE (KEEP)
+========================= */
+
+[data-bs-theme="dark"] .card {
+background-color: #020617;
+border: 1px solid #1e293b;
+box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
+}
+
+[data-bs-theme="dark"] .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 18px 35px rgba(56, 189, 248, 0.15);
+}
+
+[data-bs-theme="light"] body {
+background-color: #f1f5f9;
+}
+
+/* ================= CARD EFFECT ================= */
+
+.card {
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+/* LIGHT MODE */
+[data-bs-theme="light"] .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+/* DARK MODE */
+[data-bs-theme="dark"] .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+}
+
+.category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.category-badge a {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT */
+[data-bs-theme="light"] .category-badge a {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+}
+
+[data-bs-theme="light"] .category-badge a:hover {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+/* DARK */
+[data-bs-theme="dark"] .category-badge a {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .category-badge a:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination .page-link {
+    border-radius: 10px;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT */
+[data-bs-theme="light"] .pagination .page-link {
+    background: #f8fafc;
+    color: #2563eb;
+    border: 1px solid #e2e8f0;
+}
+
+[data-bs-theme="light"] .pagination .page-link:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* DARK */
+[data-bs-theme="dark"] .pagination .page-link {
+    background: #020617;
+    color: #38bdf8;
+    border: 1px solid #1e293b;
+}
+
+[data-bs-theme="dark"] .pagination .page-link:hover {
+    background: #38bdf8;
+    color: #020617;
+}
+
+/* ACTIVE */
+.pagination .active .page-link {
+    font-weight: 700;
+}
+
+/* =========================
+CATEGORY BADGE - VISIBILITY FIX
+========================= */
+
+.category-badge a {
+    backdrop-filter: blur(8px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    border: 1px solid transparent;
+}
+
+[data-bs-theme="light"] .category-badge a {
+    background: rgba(37, 99, 235, 0.85); /* lebih solid */
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-bs-theme="light"] .category-badge a:hover {
+    background: #2563eb;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
+}
+
+[data-bs-theme="dark"] .category-badge a {
+    background: rgba(2, 6, 23, 0.75); /* gelap solid */
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+[data-bs-theme="dark"] .category-badge a:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+}

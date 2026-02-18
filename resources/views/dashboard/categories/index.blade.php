@@ -12,7 +12,7 @@
     @endif
 
     <div class="table-responsive col-lg-6">
-        <a href="{{ route('dashboard-posts.create') }}" class="btn btn-primary mb-3"><i class="bi bi-plus-square"></i> Create
+        <a href="{{ route('dashboard-categories.create') }}" class="btn btn-primary mb-3"><i class="bi bi-plus-square"></i> Create
             New Category</a>
         <table class="table table-striped table-sm">
             <thead>

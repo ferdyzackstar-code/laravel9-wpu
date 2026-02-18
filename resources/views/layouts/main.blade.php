@@ -2,28 +2,44 @@
 <html lang="en">
 
 <head>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                document.documentElement.setAttribute("data-bs-theme", savedTheme);
+            }
+        })();
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ferdy Blog | {{ $title }}</title>
-    <style>
-        [data-bs-theme="dark"] .navbar {
-            background-color: #7f1d1d !important;
-        }
-    </style>
 
     {{-- Bootstrap CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    {{-- My Styles --}}
-    <link rel="stylesheet" href="css/style.css">
-    {{-- CSS About --}}
-    <link rel="stylesheet" href="css/about.css">
-    {{-- CSS Like --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/like.css') }}"> --}}
 
+    {{-- Global Styles --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    {{-- Navbar --}}
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+
+    {{-- About --}}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+
+    {{-- Posts list --}}
+    @stack('styles-posts')
+
+    {{-- Single post --}}
+    @stack('styles-post')
+
+    {{-- Auth --}}
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
+
 
 <body>
 
@@ -33,9 +49,36 @@
         @yield('container')
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    <script>
+        const themeToggle = document.getElementById("themeToggle");
+        const html = document.documentElement;
+
+        // INIT THEME (tanpa animasi)
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            html.setAttribute("data-bs-theme", savedTheme);
+            themeToggle.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            // aktifkan animasi
+            html.classList.add("theme-transition");
+
+            const currentTheme = html.getAttribute("data-bs-theme") || "light";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            html.setAttribute("data-bs-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+
+            // matikan animasi setelah selesai
+            setTimeout(() => {
+                html.classList.remove("theme-transition");
+            }, 400);
+        });
     </script>
+
+
 </body>
 
 </html>

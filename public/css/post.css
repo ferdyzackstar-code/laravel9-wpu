@@ -1,0 +1,170 @@
+/* =========================
+SINGLE POST LAYOUT
+========================= */
+
+.single-post {
+    padding-bottom: 80px;
+}
+
+.single-post img {
+    border-radius: 18px;
+    margin: 24px 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+POST TITLE
+========================= */
+
+.single-post h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+/* =========================
+POST META
+========================= */
+
+.post-meta {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.post-meta a {
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* PAS TERANG */
+[data-bs-theme="light"] .post-meta {
+    color: #475569;
+}
+
+[data-bs-theme="light"] .post-meta a {
+    color: #2563eb;
+}
+
+[data-bs-theme="light"] .post-meta a:hover {
+    color: #1e40af;
+}
+
+/* PAS GELAP */
+[data-bs-theme="dark"] .post-meta {
+    color: #94a3b8;
+}
+
+[data-bs-theme="dark"] .post-meta a {
+    color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .post-meta a:hover {
+    color: #7dd3fc;
+}
+
+/* =========================
+POST CONTENT
+========================= */
+
+.single-post article {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.single-post article p {
+    margin-bottom: 1.4rem;
+}
+
+.single-post article h2,
+.single-post article h3 {
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.single-post article ul,
+.single-post article ol {
+    padding-left: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.single-post article blockquote {
+    padding: 16px 20px;
+    border-left: 4px solid #38bdf8;
+    border-radius: 8px;
+    margin: 24px 0;
+}
+
+/* PAS TERANG */
+[data-bs-theme="light"] .single-post article {
+    color: #0f172a;
+}
+
+[data-bs-theme="light"] .single-post article blockquote {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+/* PAS GELAP */
+[data-bs-theme="dark"] .single-post article {
+    color: #e5e7eb;
+}
+
+[data-bs-theme="dark"] .single-post article blockquote {
+    background: #020617;
+    color: #cbd5f5;
+}
+
+/* LINK ARTIKEL */
+.single-post article a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* PAS TERANG */
+[data-bs-theme="light"] .single-post article a {
+    color: #2563eb;
+}
+
+/* PAS GELAP */
+[data-bs-theme="dark"] .single-post article a {
+    color: #38bdf8;
+}
+
+/* =========================
+BACK BUTTON
+========================= */
+
+.back-posts {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT */
+[data-bs-theme="light"] .back-posts {
+    background: #2563eb;
+    color: #fff;
+}
+
+[data-bs-theme="light"] .back-posts:hover {
+    background: #1e40af;
+}
+
+/* DARK */
+[data-bs-theme="dark"] .back-posts {
+    background: #38bdf8;
+    color: #020617;
+}
+
+[data-bs-theme="dark"] .back-posts:hover {
+    background: #7dd3fc;
+}
+

@@ -1,20 +1,86 @@
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+/* =========================
+GLOBAL THEME
+========================= */
+
+html {
+scroll-behavior: smooth;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+/* LINKS */
+a {
+text-decoration: none;
+transition: all 0.3s ease;
 }
 
-.form-registration input {
-    border-radius: 0;
-    margin-bottom: -1px;
+/* CONTAINER SPACING */
+.container {
+padding-inline: 16px;
+}
+
+/* SELECTION */
+::selection {
+background: #38bdf8;
+color: #020617;
+}
+
+/* DARK MODE BODY */
+[data-bs-theme="dark"] body {
+background-color: #020617;
+color: #e5e7eb;
+}
+
+/* LIGHT MODE BODY */
+[data-bs-theme="light"] body {
+background-color: #f1f5f9;
+color: #0f172a;
+}
+
+/* =========================
+ANTI LEDAKAN GLOBAL
+========================= */
+* {
+animation: none !important;
+transition: none !important;
+}
+
+/* =========================
+KILL BOOTSTRAP ANIMATIONS
+========================= */
+.fade,
+.collapse,
+.collapsing,
+.offcanvas,
+.modal,
+.carousel,
+.dropdown-menu {
+transition: none !important;
+animation: none !important;
+}
+
+/* =========================
+THEME TRANSITION (SAFE)
+========================= */
+html.theme-transition,
+html.theme-transition * {
+transition:
+background-color 0.35s ease,
+color 0.35s ease,
+border-color 0.35s ease,
+box-shadow 0.35s ease !important;
+}
+/* =========================
+THEME TRANSITION (SAFE)
+========================= */
+html.theme-transition,
+html.theme-transition * {
+transition:
+background-color 0.35s ease,
+color 0.35s ease,
+border-color 0.35s ease,
+box-shadow 0.35s ease !important;
 }
