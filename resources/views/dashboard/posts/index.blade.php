@@ -14,8 +14,8 @@
     <div class="table-responsive col-lg-12">
         <a href="{{ route('dashboard-posts.create') }}" class="btn btn-primary mb-3"><i class="bi bi-plus-square"></i> Create
             New Post</a>
-        <table class="table table-striped table-sm">
-            <thead>
+        <table class="table table-hover table-sm">
+            <thead class="thead-custom">
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Title</th>
@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($posts as $post)
                     <tr>
-                    <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
                             @if ($post->image == null)
@@ -47,7 +47,8 @@
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="{{ route('dashboard-posts.destroy', $post->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('dashboard-posts.destroy', $post->id) }}" method="POST"
+                                class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">

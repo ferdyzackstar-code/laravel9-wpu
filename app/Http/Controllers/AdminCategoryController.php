@@ -48,7 +48,7 @@ class AdminCategoryController extends Controller
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('category-images');
         }
-        
+
         // dd($validatedData);
 
         Category::create($validatedData);
@@ -61,15 +61,18 @@ class AdminCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function show($id)
     {
-        // dd($category);
-        // 
-
         $category = Category::find($id);
 
-        $dataPost = Post::where('user_id', auth()->user()->id)->where('category_id', $category->id)->get();
-        dd($dataPost, $category);
+        $dataPost = Post::where('user_id', auth()->user()->id)
+            ->where('category_id', $category->id)
+            ->get();
+
+        return view('dashboard.categories.show', [
+            'category' => $category,
+            'posts' => $dataPost,
+        ]);
     }
 
     /**

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -18,6 +18,9 @@
             display: none;
         }
     </style>
+
+    {{-- Categories --}}
+    <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -38,7 +41,6 @@
             }
         }
     </style>
-
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
@@ -63,6 +65,27 @@
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
     </script>
     <script src="{{ asset('dashboard.js') }}"></script>
+    <script>
+    const toggleBtn = document.getElementById('themeToggle');
+
+    // Load theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("theme", "dark");
+            toggleBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+        } else {
+            localStorage.setItem("theme", "light");
+            toggleBtn.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
+        }
+    });
+</script>
+
 
 </body>
 

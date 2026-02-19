@@ -173,20 +173,22 @@ body.dark-theme .card:hover {
 
 /* Buttons */
 .btn-small {
-    background: var(--btn-bg);
-    color: var(--btn-color);
+    background: #38bdf8; /* Warna biru cerah */
+    color: #0f172a !important; /* Teks tombol warna gelap biar kontras */
     padding: 10px 25px;
     border: none;
     border-radius: 50px;
-    font-weight: 600;
-    transition: 0.3s;
+    font-weight: 800;
     text-decoration: none;
     display: inline-block;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.5); /* Efek cahaya biru di bawah tombol */
+    transition: 0.3s;
 }
 
 .btn-small:hover {
-    filter: brightness(1.1);
-    letter-spacing: 1px;
+    transform: scale(1.05);
+    background: #ffffff;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
 }
 
 /* Responsif */
@@ -213,6 +215,20 @@ body.dark-theme .card:hover {
     flex-direction: column;
 }
 
+/* Paste ini di bawah .card */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Membuat bayangan hitam dari bawah ke tengah gambar */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* Style Badge ala halaman Posts */
 .category-badge {
     position: absolute;
@@ -233,13 +249,23 @@ body.dark-theme .card:hover {
 
 /* Perbaikan visual konten card */
 .card-content {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
+    position: relative;
+    z-index: 2; /* Angka 2 ini penting biar teksnya muncul di atas bayangan hitam */
 }
 
 .card-content h3 {
-    color: var(--text-color);
+    color: #ffffff !important; /* Paksa jadi putih */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Kasih bayangan hitam di hurufnya */
     font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.card-content p {
+    color: rgba(255, 255, 255, 0.8) !important; /* Putih agak transparan */
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
 }
 
 .card img {
@@ -307,6 +333,7 @@ border-radius: 16px;
 overflow: hidden;
 transition: transform .3s ease, box-shadow .3s ease;
 }
+
 
 .card img {
 transition: transform 0.4s ease;
@@ -743,4 +770,43 @@ CATEGORY BADGE - VISIBILITY FIX
 
 [data-bs-theme="dark"] body {
     background-color: #020617;
+}
+
+/* --- Khusus Card Author --- */
+
+/* Pastikan kartu author punya overlay yang sama */
+.author-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient gelap agar nama author putih terlihat jelas */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Atur tinggi gambar khusus author agar lebih proporsional */
+.author-card img {
+    height: 400px !important;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.author-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Pastikan teks author putih dan rapi */
+.author-card .card-content h3 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    margin-bottom: 2px;
+}
+
+.author-card .card-content p {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
 }

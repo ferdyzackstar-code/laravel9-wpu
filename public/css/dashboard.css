@@ -1,100 +1,258 @@
+/* Smooth Transition */
 body {
-  font-size: .875rem;
+transition: background 0.3s ease, color 0.3s ease;
 }
 
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
+/* Light Mode */
+body {
+background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+color: #333;
 }
 
-/*
- * Sidebar
- */
+/* Dark Mode */
+body.dark-mode {
+background: linear-gradient(135deg, #0f172a, #1e293b);
+color: #e2e8f0;
+}
 
+/* Glass Navbar */
+.navbar-glass {
+backdrop-filter: blur(10px);
+background: rgba(255,255,255,0.6);
+box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .navbar-glass {
+background: rgba(15,23,42,0.7);
+}
+
+/* Sidebar */
 .sidebar {
-  position: fixed;
-  top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+min-height: 100vh;
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(8px);
+transition: 0.3s;
 }
 
-@media (max-width: 767.98px) {
-  .sidebar {
-    top: 5rem;
-  }
+body.dark-mode .sidebar {
+background: rgba(30,41,59,0.8);
 }
 
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
+/* Sidebar Links */
 .sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
+border-radius: 10px;
+margin: 5px 10px;
+padding: 10px 15px;
+transition: 0.3s ease;
 }
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
+.sidebar .nav-link:hover {
+background: rgba(0,0,0,0.05);
+transform: translateX(5px);
 }
 
+body.dark-mode .sidebar .nav-link:hover {
+background: rgba(255,255,255,0.1);
+}
+
+/* Active Link */
 .sidebar .nav-link.active {
-  color: #2470dc;
+background: #3b82f6;
+color: white !important;
+box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
+/* Logout Button */
+.btn-logout {
+background: transparent;
+color: inherit;
+border: 1px solid rgba(0,0,0,0.1);
+transition: 0.3s;
 }
 
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
+.btn-logout:hover {
+background: #ef4444;
+color: white;
 }
 
-/*
- * Navbar
- */
+/* Toggle Theme Button */
+.btn-toggle-theme {
+border: none;
+background: transparent;
+font-size: 1.2rem;
+}
 
+/* --- Navbar Text & Logo Colors --- */
+
+/* Default (Light Mode) */
 .navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+color: #1e293b; /* Biru gelap agar kontras di background terang */
+transition: color 0.3s ease;
 }
 
-.navbar .navbar-toggler {
-  top: .25rem;
-  right: 1rem;
+.btn-toggle-theme {
+color: #4b5563; /* Abu-abu gelap */
 }
 
-.navbar .form-control {
-  padding: .75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
+.btn-logout {
+border: 1px solid rgba(0, 0, 0, 0.1);
+color: #1e293b;
 }
 
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
+/* Dark Mode Adjustments */
+body.dark-mode .navbar-brand {
+color: #ffffff; /* Putih bersih di mode gelap */
 }
 
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+body.dark-mode .btn-toggle-theme {
+color: #fbbf24; /* Warna kuning emas untuk ikon bintang/bulan agar 'pop' */
+}
+
+body.dark-mode .btn-logout {
+border: 1px solid rgba(255, 255, 255, 0.2);
+color: #f1f5f9;
+}
+
+/* Hover effect tetap konsisten */
+.navbar-brand:hover {
+color: #3b82f6;
+}
+
+/* --- Penyesuaian Tabel Agar Mirip Navbar --- */
+
+/* 1. Paksa warna teks mengikuti body (Hitam saat terang, Putih saat gelap) */
+.table {
+    color: inherit !important; 
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 2. Pastikan header dan isi kolom juga ikut warnanya */
+.table th, 
+.table td {
+    color: inherit !important;
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2) !important;
+    padding: 12px 8px !important;
+}
+
+/* 3. Efek Hover saat baris disentuh kursor */
+.table-hover tbody tr:hover {
+    color: inherit !important;
+    background-color: rgba(59, 130, 246, 0.1) !important; /* Biru transparan tipis */
+}
+
+/* 4. Menghilangkan warna striping bawaan Bootstrap yang kaku */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+}
+
+/* --- Form Styling Modern --- */
+
+/* Gaya dasar input agar lebih soft */
+.form-control, .form-select, trix-editor {
+    border-radius: 10px !important;
+    background-color: rgba(255, 255, 255, 0.9); /* Sedikit transparan di mode terang */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+/* --- Dark Mode Form --- */
+body.dark-mode .form-control, 
+body.dark-mode .form-select,
+body.dark-mode trix-editor {
+    background-color: rgba(30, 41, 59, 0.5) !important; /* Biru gelap transparan */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f1f5f9 !important;
+    backdrop-filter: blur(4px);
+}
+
+/* Efek saat Input diklik (Focus) */
+.form-control:focus, .form-select:focus, trix-editor:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 0.25 margin rgba(59, 130, 246, 0.25);
+    border-color: #3b82f6;
+}
+
+body.dark-mode .form-control:focus, 
+body.dark-mode .form-select:focus,
+body.dark-mode trix-editor:focus {
+    background-color: rgba(30, 41, 59, 0.8) !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); /* Glow biru di mode gelap */
+    border-color: #3b82f6;
+}
+
+/* Styling Khusus Trix Editor Toolbar */
+body.dark-mode trix-toolbar .trix-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode trix-toolbar .trix-button--icon::before {
+    filter: invert(1); /* Bikin ikon trix jadi putih */
+}
+
+/* Label agar tetap kontras */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+/* Custom Card untuk Dashboard Category Show */
+.custom-glass-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: inherit !important;
+    transition: transform 0.3s ease;
+}
+
+.custom-glass-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Penyesuaian teks di mode gelap agar kontras */
+body.dark-mode .custom-glass-card {
+    background: rgba(30, 41, 59, 0.4) !important;
+}
+
+body.dark-mode .custom-glass-card .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Efek muncul perlahan (fade-in) */
+.custom-glass-card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Sidebar Heading (Administrator) --- */
+
+/* Default / Mode Terang */
+.sidebar-heading {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #64748b !important; /* Abu-abu metalik agar rapi */
+    transition: color 0.3s ease;
+}
+
+/* Saat Mode Gelap */
+body.dark-mode .sidebar-heading {
+    color: rgba(255, 255, 255, 0.5) !important; /* Putih transparan agar soft tapi tetap terbaca */
+}
+
+/* Tambahan: Warna icon di sidebar biar lebih hidup */
+.sidebar .nav-link i {
+    margin-right: 8px;
+    color: inherit;
 }

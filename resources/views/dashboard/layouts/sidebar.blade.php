@@ -5,7 +5,6 @@
                 <a class="nav-link {{ Route::is('dashboard.index') ? 'active' : '' }}"
                     href="{{ route('dashboard.index') }}">
                     <i class="bi bi-house-fill"></i>
-                    <span data-feather="fs fs-home"></span>
                     Dashboard
                 </a>
 

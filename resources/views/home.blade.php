@@ -37,7 +37,7 @@
 
                     <div class="card-content">
                         <h3>{{ $category->name }}</h3>
-                        <p class="text-muted small">Explore various posts about {{ $category->name }}</p>
+                        <p class="text-white-50 small">Explore various posts about {{ $category->name }}</p>
                         <a href="/posts?category={{ $category->slug }}" class="btn-small">
                             EXPLORE {{ strtoupper($category->name) }}
                         </a>
@@ -53,37 +53,24 @@
             <div class="row justify-content-center">
                 @foreach ($authors as $author)
                     <div class="col-md-4 mb-4">
-                        <div class="card shadow-sm h-100">
+                        <div class="card author-card h-100 border-0 shadow-sm overflow-hidden">
                             <div class="category-badge">
                                 <a href="/posts?author={{ $author->username }}">
                                     Writer
                                 </a>
                             </div>
 
-                            <div style="overflow:hidden; height: 250px;">
-                                <img src="https://i.pravatar.cc/400?u={{ $author->username }}"
-                                    class="card-img-top img-fluid" alt="{{ $author->name }}"
-                                    style="object-fit: cover; height: 100%; width: 100%;">
-                            </div>
+                            <img src="https://i.pravatar.cc/400?u={{ $author->username }}" class="card-img-top"
+                                alt="{{ $author->name }}" style="height: 400px; object-fit: cover;">
 
-                            <div class="card-body text-center d-flex flex-column">
-                                <h5 class="card-title fw-bold">{{ $author->name }}</h5>
-
-                                <p class="mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-journal-richtext"></i> {{ $author->posts_count }} Posts Published
-                                    </small>
+                            <div class="card-content">
+                                <h3 class="fw-bold">{{ $author->name }}</h3>
+                                <p class="small">
+                                    <i class="bi bi-journal-richtext"></i> {{ $author->posts_count }} Posts Published
                                 </p>
-
-                                <p class="card-text text-muted small flex-grow-1">
-                                    Active contributor sharing insights since {{ $author->created_at->format('M Y') }}.
-                                </p>
-
-                                <div class="mt-auto">
-                                    <a href="/posts?author={{ $author->username }}" class="btn btn-primary w-100">
-                                        View Profile
-                                    </a>
-                                </div>
+                                <a href="/posts?author={{ $author->username }}" class="btn-small">
+                                    VIEW PROFILE
+                                </a>
                             </div>
                         </div>
                     </div>

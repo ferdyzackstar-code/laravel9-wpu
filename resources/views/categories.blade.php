@@ -2,27 +2,27 @@
 
 @section('container')
 
-    <h1 class="mb-5">Post Categories</h1>
+<div class="container categories-section">
+    <h1 class="categories-heading mb-5">Post Categories</h1>
 
-    <div class="container">
-        <div class="row">
-            @foreach ($categories as $category)
-                
-            <div class="col-md-4">
-                <a href="/posts?category={{ $category->slug }}">
-                <div class="card text-bg-dark text-white">
-                    <img src="https://picsum.photos/500/500?{{ $category->name }}" 
-                    class="card-img" alt="{{ $category->name }}">
-                    <div class="card-img-overlay d-flex align-items-center p-0 fs-3">
-                        <h5 class="card-title text-center flex-fill p-4" style="background-color:rgba(0, 0, 0, 0.7)">
-                            {{ $category->name }}
-                        </h5>
+    <div class="row g-4">
+        @foreach ($categories as $category)
+        <div class="col-lg-4 col-md-6">
+            <a href="/posts?category={{ $category->slug }}" class="text-decoration-none">
+                <div class="category-card-v2">
+                    <img 
+                        src="https://picsum.photos/600/400?{{ $category->name }}" 
+                        alt="{{ $category->name }}"
+                    >
+
+                    <div class="category-strip">
+                        {{ $category->name }}
                     </div>
                 </div>
-                </a>
-            </div>
-            @endforeach
+            </a>
         </div>
+        @endforeach
     </div>
+</div>
 
-@endsection 
+@endsection

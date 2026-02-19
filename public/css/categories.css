@@ -1,0 +1,77 @@
+/* ===============================
+CATEGORY V2 DESIGN
+================================ */
+
+.categories-heading {
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.category-card-v2 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    height: 250px;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.category-card-v2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+}
+
+/* STRIP TENGAH */
+.category-strip {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    padding: 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    backdrop-filter: blur(6px);
+    transition: all .3s ease;
+}
+
+[data-bs-theme="light"] .category-card-v2 {
+    box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
+
+[data-bs-theme="light"] .category-card-v2:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(37,99,235,.3);
+}
+
+[data-bs-theme="light"] .category-strip {
+    background: rgba(255,255,255,.75);
+    color: #1e293b;
+}
+
+[data-bs-theme="dark"] .category-card-v2 {
+    box-shadow: 0 15px 35px rgba(0,0,0,.6);
+}
+
+[data-bs-theme="dark"] .category-card-v2:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(56,189,248,.25);
+}
+
+[data-bs-theme="dark"] .category-strip {
+    background: rgba(15,23,42,.65);
+    color: #e2e8f0;
+    border-top: 1px solid rgba(255,255,255,.05);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.category-card-v2:hover img {
+    transform: scale(1.08);
+}
+
+.category-card-v2:hover .category-strip {
+    letter-spacing: 2px;
+}

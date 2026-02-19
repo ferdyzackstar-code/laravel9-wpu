@@ -41,6 +41,9 @@
 
     {{-- Home --}}
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
+    {{-- Categories --}}
+    <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
 </head>
 
 
