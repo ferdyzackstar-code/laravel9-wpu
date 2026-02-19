@@ -21,7 +21,7 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav ms-auto ">
+            <ul class="navbar-nav ms-auto align-items-center">
                 @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -34,29 +34,30 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item" href="#"><i
-                                        class="bi bi-box-arrow-right"></i> Logout</a>
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="bi bi-box-arrow-right"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
+                @else
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }}">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </a>
+                    </li>
+                @endauth
+
+                <li class="nav-item ms-lg-3 d-flex align-items-center">
+                    <button id="themeToggle" class="btn border-0 fs-5 p-0" type="button" style="color: inherit;">
+                        🌙
                     </button>
-                    </form>
-                </ul>
-            @else
-                <li class="nav-item">
-                    <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }}"><i
-                            class="bi bi-box-arrow-in-right"></i>
-                        Login</a>
                 </li>
-            @endauth
-            <li class="nav-item mt-1 mx-3">
-                <button id="themeToggle" class="btn btn-outline-light btn-sm ms-2">
-                    🌙
-                </button>
-            </li>
             </ul>
         </div>
     </div>
 </nav>
-
-</html>

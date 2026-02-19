@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminCategoryController;
-use App\Models\Category;
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
 use Termwind\Components\Raw;
 
 /*
@@ -22,12 +23,7 @@ use Termwind\Components\Raw;
 */
 
 // Halaman index nya ==> ketika pertama kali dibuka
-Route::get('/', function () {
-    return view('home', [
-        "title"=>"Home",
-        "active"=>"home"
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about', [

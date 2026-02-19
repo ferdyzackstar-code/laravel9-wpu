@@ -1,16 +1,16 @@
 /* ===============================
-PORTFOLIO NAVBAR (FINAL)
+PORTFOLIO NAVBAR (CLEAN VERSION)
 ================================ */
 
 .portfolio-navbar {
-    padding: 14px 0;
-    transition: background-color .3s ease, box-shadow .3s ease;
+padding: 14px 0;
+transition: background-color .3s ease, box-shadow .3s ease;
 }
 
 /* BRAND */
 .portfolio-navbar .navbar-brand {
-    font-weight: 800;
-    letter-spacing: 1px;
+font-weight: 800;
+letter-spacing: 1px;
 }
 
 /* LINK */
@@ -21,63 +21,80 @@ PORTFOLIO NAVBAR (FINAL)
     transition: color .3s ease;
 }
 
-/* UNDERLINE */
-.portfolio-navbar .nav-link::after {
+/* UNDERLINE - Hanya untuk link yang BUKAN tombol tema */
+.portfolio-navbar .nav-link:not(#themeToggle)::after {
     content: "";
     position: absolute;
     left: 50%;
     bottom: -4px;
     width: 0;
     height: 2px;
+    background: currentColor; /* Mengikuti warna teks link */
     transform: translateX(-50%);
     transition: width 0.3s ease;
 }
 
-/* ACTIVE + HOVER */
-.portfolio-navbar .nav-link:hover::after,
-.portfolio-navbar .nav-link.active::after {
+/* ACTIVE + HOVER UNDERLINE */
+.portfolio-navbar .nav-link:not(#themeToggle):hover::after,
+.portfolio-navbar .nav-link:not(#themeToggle).active::after {
     width: 70%;
 }
 
-/* ================= LIGHT MODE ================= */
+/* HOVER EFFECT - Ganti garis dengan sedikit glow/scale */
+.portfolio-navbar .nav-link:hover {
+transform: translateY(-2px);
+}
 
+/* ================= LIGHT MODE ================= */
 [data-bs-theme="light"] .portfolio-navbar {
-    background: linear-gradient(135deg, #0d6efd, #1e40af);
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+background: linear-gradient(135deg, #0d6efd, #1e40af);
+box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
 }
 
 [data-bs-theme="light"] .portfolio-navbar .nav-link,
 [data-bs-theme="light"] .portfolio-navbar .navbar-brand {
-    color: #e6f0ff;
+color: #e6f0ff;
 }
 
-[data-bs-theme="light"] .portfolio-navbar .nav-link::after {
-    background: #7dd3fc;
-}
-
-[data-bs-theme="light"] .portfolio-navbar .nav-link:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255,255,255,.7);
+[data-bs-theme="light"] .portfolio-navbar .nav-link:hover,
+[data-bs-theme="light"] .portfolio-navbar .nav-link.active {
+color: #ffffff;
+text-shadow: 0 0 10px rgba(255,255,255,.7);
 }
 
 /* ================= DARK MODE ================= */
-
 [data-bs-theme="dark"] .portfolio-navbar {
-    background: rgba(2, 6, 23, 0.85);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 25px rgba(56, 189, 248, 0.25);
+background: rgba(2, 6, 23, 0.85) !important;
+backdrop-filter: blur(12px);
+box-shadow: 0 4px 25px rgba(56, 189, 248, 0.2);
+border-bottom: 1px solid #1e293b;
 }
 
 [data-bs-theme="dark"] .portfolio-navbar .nav-link,
 [data-bs-theme="dark"] .portfolio-navbar .navbar-brand {
-    color: #cbd5f5;
+color: #cbd5f5;
 }
 
-[data-bs-theme="dark"] .portfolio-navbar .nav-link::after {
-    background: #38bdf8;
+[data-bs-theme="dark"] .portfolio-navbar .nav-link:hover,
+[data-bs-theme="dark"] .portfolio-navbar .nav-link.active {
+color: #38bdf8;
+text-shadow: 0 0 12px rgba(56,189,248,.6);
 }
 
-[data-bs-theme="dark"] .portfolio-navbar .nav-link:hover {
-    color: #38bdf8;
-    text-shadow: 0 0 12px rgba(56,189,248,.9);
+/* ================= THEME TOGGLE (FIX MIRING) ================= */
+#themeToggle {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    line-height: 1;
+    border: none;
+    background: transparent;
+}
+
+#themeToggle:hover {
+    transform: scale(1.2); /* Hanya membesar, tidak miring */
+    text-shadow: none; /* Menghilangkan glow berlebih agar tidak silau */
+}
+
+#themeToggle::after {
+    display: none !important;
 }

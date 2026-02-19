@@ -1,0 +1,746 @@
+/* Fonts */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+/* Tema gelap & terang */
+:root {
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.05);
+    --btn-bg: #38bdf8;
+    --btn-color: #ffffff;
+    --accent-color: #0ea5e9;
+}
+
+body.dark-theme {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --card-border: rgba(255, 255, 255, 0.1);
+    --btn-bg: #38bdf8;
+    --btn-color: #0f172a;
+    --accent-color: #7dd3fc;
+}
+
+/* Transisi Global untuk perpindahan tema */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    min-height: 90vh;
+    background: url('https://images.unsplash.com/photo-1559628233-eb1b1a45564b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+    color: white;
+    gap: 30px;
+    border-radius: 10px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.hero-content .subtitle {
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero-content .description {
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.btn-outline {
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+/* Hero Card */
+.hero-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 250px;
+    box-shadow: 0 0 20px rgba(56, 221, 248, 0.4);
+}
+
+.hero-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #38bdf8;
+    margin-bottom: 15px;
+}
+
+.hero-card h3 {
+    margin: 10px 0 5px 0;
+}
+
+.hero-card p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.socials a {
+    color: var(--text-color);
+    margin: 0 5px;
+    font-size: 1.2rem;
+}
+
+/* Categories */
+.categories {
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    overflow: hidden;
+    /* Transisi smooth menggunakan cubic-bezier */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+/* Hover Effect: Melayang sedikit dan glow */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Khusus Dark Theme Hover Glow */
+body.dark-theme .card:hover {
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+    border-color: var(--accent-color);
+}
+
+/* Overlay Gambar saat Hover */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn-small {
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-small:hover {
+    filter: brightness(1.1);
+    letter-spacing: 1px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-card {
+        margin-bottom: 25px;
+    }
+}
+
+/* Container untuk card agar posisi badge bisa absolute */
+.card {
+    position: relative; /* Penting untuk posisi badge */
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden; /* Agar gambar tidak keluar dari border radius */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style Badge ala halaman Posts */
+.category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 15px;
+    border-radius: 20px;
+    z-index: 10;
+}
+
+.category-badge a {
+    color: white;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Perbaikan visual konten card */
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-content h3 {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.card img {
+    width: 100%;
+    height: 250px; /* Tinggi seragam */
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.author-img {
+    border-radius: 50% !important; /* Membuat gambar bulat */
+    width: 150px !important;
+    height: 150px !important;
+    margin: 20px auto 10px;
+    border: 5px solid var(--btn-bg);
+}
+
+/* Styling khusus card author */
+.author-card {
+    padding: 30px 20px !important;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.author-img-wrapper {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 15px;
+    position: relative;
+}
+
+.author-img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important; /* Membuat bulat sempurna */
+    object-fit: cover;
+    border: 4px solid var(--btn-bg); /* Border warna tema */
+    padding: 3px;
+    background: white;
+}
+
+.author-card:hover .author-img {
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
+
+.text-primary {
+    color: #38bdf8 !important; /* Sesuaikan dengan warna tema biru kamu */
+    
+}
+
+.text-primary {
+    color: var(--accent-color) !important;
+}
+
+/* =========================
+POSTS PAGE BASE
+========================= */
+.card {
+border: none;
+border-radius: 16px;
+overflow: hidden;
+transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card img {
+transition: transform 0.4s ease;
+}
+
+.card:hover img {
+transform: scale(1.05);
+}
+
+/* =========================
+FEATURED POST (POST PERTAMA)
+========================= */
+.card.mb-3 {
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card.mb-3 .card-title a {
+font-size: 1.6rem;
+font-weight: 700;
+}
+
+/* =========================
+POSTS GRID
+========================= */
+.col-md-4 .card {
+height: 100%;
+}
+
+.col-md-4 .card:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 45px rgba(13, 110, 253, 0.25);
+}
+
+/* =========================
+CATEGORY BADGE
+========================= */
+.card .position-absolute {
+border-bottom-right-radius: 12px;
+backdrop-filter: blur(6px);
+font-size: 0.85rem;
+}
+
+/* =========================
+BUTTON
+========================= */
+.btn-primary {
+border-radius: 999px;
+padding: 6px 18px;
+transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 0 15px rgba(13, 110, 253, 0.6);
+}
+
+/* =========================
+SEARCH BAR
+========================= */
+.input-group input {
+border-radius: 999px 0 0 999px;
+}
+
+.input-group .btn {
+border-radius: 0 999px 999px 0;
+}
+
+/* =========================
+LIGHT THEME
+========================= */
+[data-bs-theme="light"] .card {
+background-color: #ffffff;
+}
+
+[data-bs-theme="light"] .card-title,
+[data-bs-theme="light"] .card-text {
+color: #0f172a;
+}
+
+[data-bs-theme="light"] a {
+color: #0d6efd;
+}
+
+[data-bs-theme="light"] a:hover {
+color: #1e40af;
+}
+
+/* =========================
+DARK THEME
+========================= */
+[data-bs-theme="dark"] .card {
+background: linear-gradient(135deg, #020617, #0f172a);
+color: #e5e7eb;
+}
+
+[data-bs-theme="dark"] .card-title {
+color: #f8fafc;
+}
+
+[data-bs-theme="dark"] .card-text,
+[data-bs-theme="dark"] .text-muted {
+color: #94a3b8 !important;
+}
+
+[data-bs-theme="dark"] a {
+color: #7dd3fc;
+}
+
+[data-bs-theme="dark"] a:hover {
+color: #38bdf8;
+}
+
+/* =========================
+PAGINATION
+========================= */
+.pagination .page-link {
+border-radius: 999px;
+margin: 0 4px;
+}
+
+[data-bs-theme="dark"] .pagination .page-link {
+background-color: #020617;
+color: #7dd3fc;
+border: 1px solid #1e293b;
+}
+
+/* =========================
+SEARCH BAR - POSTS
+========================= */
+
+/* input */
+.input-group .form-control {
+border: 2px solid #38bdf8;
+background: transparent;
+color: inherit;
+transition: all 0.3s ease;
+}
+
+/* placeholder */
+.input-group .form-control::placeholder {
+color: #94a3b8;
+}
+
+/* focus effect */
+.input-group .form-control:focus {
+border-color: #0ea5e9;
+box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.35);
+background: transparent;
+}
+
+/* button */
+.input-group .btn {
+background: #38bdf8;
+border: 2px solid #38bdf8;
+color: #0f172a;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+
+/* hover button */
+.input-group .btn:hover {
+background: #0ea5e9;
+border-color: #0ea5e9;
+color: #fff;
+}
+
+[data-bs-theme="light"] .input-group .form-control {
+color: #0f172a;
+background-color: #f8fafc;
+}
+
+[data-bs-theme="light"] .input-group .form-control::placeholder {
+color: #64748b;
+}
+
+[data-bs-theme="dark"] .input-group .form-control {
+color: #e5e7eb;
+background-color: #020617;
+border-color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .input-group .form-control::placeholder {
+color: #94a3b8;
+}
+
+/* =========================
+POST TITLE
+========================= */
+
+/* judul utama (featured) */
+.card-title a {
+color: #0f172a;
+font-weight: 700;
+transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+color: #38bdf8;
+}
+
+/* judul card grid */
+.card-body .card-title {
+color: #0f172a;
+font-weight: 600;
+}
+
+/* =========================
+READ MORE BUTTON
+========================= */
+
+.btn-primary {
+background: #38bdf8;
+border-color: #38bdf8;
+color: #0f172a;
+font-weight: 600;
+transition: background-color .3s ease, transform .2s ease;
+}
+
+.btn-primary:hover {
+background: #0ea5e9;
+border-color: #0ea5e9;
+color: #ffffff;
+}
+
+/* =========================
+DARK MODE FIX
+========================= */
+
+[data-bs-theme="dark"] .card {
+background-color: #020617;
+border-color: #1e293b;
+}
+
+[data-bs-theme="dark"] .card-title a,
+[data-bs-theme="dark"] .card-body .card-title {
+color: #e5e7eb;
+}
+
+[data-bs-theme="dark"] .card-title a:hover {
+color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+color: #020617;
+}
+
+[data-bs-theme="light"] .card {
+background-color: #ffffff;
+}
+
+/* =========================
+CARD - LIGHT MODE
+========================= */
+
+[data-bs-theme="light"] .card {
+background-color: #f8fafc; /* soft blue-gray */
+border: 1px solid #e2e8f0;
+box-shadow: 0 10px 20px rgba(2, 6, 23, 0.05);
+transition: all 0.3s ease;
+}
+
+/* hover biar card naik dikit */
+[data-bs-theme="light"] .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 16px 30px rgba(2, 6, 23, 0.08);
+}
+
+/* =========================
+CARD - DARK MODE (KEEP)
+========================= */
+
+[data-bs-theme="dark"] .card {
+background-color: #020617;
+border: 1px solid #1e293b;
+box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
+}
+
+[data-bs-theme="dark"] .card:hover {
+transform: translateY(-4px);
+box-shadow: 0 18px 35px rgba(56, 189, 248, 0.15);
+}
+
+[data-bs-theme="light"] body {
+background-color: #f1f5f9;
+}
+
+/* ================= CARD EFFECT ================= */
+
+.card {
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+/* LIGHT MODE */
+[data-bs-theme="light"] .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+/* DARK MODE */
+[data-bs-theme="dark"] .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+}
+
+.category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.category-badge a {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT */
+[data-bs-theme="light"] .category-badge a {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+}
+
+[data-bs-theme="light"] .category-badge a:hover {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+/* DARK */
+[data-bs-theme="dark"] .category-badge a {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .category-badge a:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination .page-link {
+    border-radius: 10px;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT */
+[data-bs-theme="light"] .pagination .page-link {
+    background: #f8fafc;
+    color: #2563eb;
+    border: 1px solid #e2e8f0;
+}
+
+[data-bs-theme="light"] .pagination .page-link:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* DARK */
+[data-bs-theme="dark"] .pagination .page-link {
+    background: #020617;
+    color: #38bdf8;
+    border: 1px solid #1e293b;
+}
+
+[data-bs-theme="dark"] .pagination .page-link:hover {
+    background: #38bdf8;
+    color: #020617;
+}
+
+/* ACTIVE */
+.pagination .active .page-link {
+    font-weight: 700;
+}
+
+/* =========================
+CATEGORY BADGE - VISIBILITY FIX
+========================= */
+
+.category-badge a {
+    backdrop-filter: blur(8px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    border: 1px solid transparent;
+}
+
+[data-bs-theme="light"] .category-badge a {
+    background: rgba(37, 99, 235, 0.85); /* lebih solid */
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-bs-theme="light"] .category-badge a:hover {
+    background: #2563eb;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
+}
+
+[data-bs-theme="dark"] .category-badge a {
+    background: rgba(2, 6, 23, 0.75); /* gelap solid */
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+[data-bs-theme="dark"] .category-badge a:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+}
+
+/* Tambahan khusus agar foto author terlihat bagus di dalam card posts */
+.card-img-top {
+    transition: transform 0.4s ease;
+}
+
+/* Jika kamu ingin foto author tetap bulat di dalam card kotak: */
+.author-card-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 20px auto 0;
+    object-fit: cover;
+    border: 3px solid #38bdf8;
+}
+
+/* Pastikan container home punya background yang sesuai tema */
+[data-bs-theme="light"] body {
+    background-color: #f1f5f9;
+}
+
+[data-bs-theme="dark"] body {
+    background-color: #020617;
+}

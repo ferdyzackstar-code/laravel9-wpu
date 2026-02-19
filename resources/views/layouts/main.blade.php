@@ -38,6 +38,9 @@
 
     {{-- Auth --}}
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+
+    {{-- Home --}}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 
 
