@@ -28,15 +28,15 @@
                     <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a class="badge bg-info" href="{{ route('dashboard-categories.show', $category) }}">
+                            <a class="badge bg-info" href="{{ route('dashboard-categories.show', $category->id) }}">
                                 <i class="bi bi-search"></i>
                             </a>
 
-                            <a class="badge bg-warning" href="{{ route('dashboard-categories.edit', $category->id) }}">
+                            <a class="badge bg-warning" href="{{ route('dashboard-categories.edit', $category) }}">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="{{ route('dashboard-categories.destroy', $category->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('dashboard-categories.destroy', $category) }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">

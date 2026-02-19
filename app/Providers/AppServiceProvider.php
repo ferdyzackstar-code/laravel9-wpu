@@ -2,35 +2,33 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
+        // 1. Agar pagination Laravel menggunakan styling Bootstrap
         Paginator::useBootstrap();
 
-        Gate::define('admin', function(User $user)
-        {
+        // 2. Gate untuk otorisasi Admin
+        Gate::define('admin', function (User $user) {
             return $user->is_admin;
+            // Pastikan di tabel users kamu sudah ada kolom 'is_admin' (boolean)
         });
     }
 }

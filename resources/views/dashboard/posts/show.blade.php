@@ -10,7 +10,7 @@
                     @csrf
 
                     <a href="/dashboard-posts" class="btn btn-success"><i class="bi bi-backspace"></i> Back To All My Posts</a>
-                    <a href="#" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
+                    <a href="{{ route('dashboard-posts.edit', $data->id) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
 
                     <button type="submit" class="btn btn-danger" href="#">
                         <i class="bi bi-x-octagon"></i> Delete</a></li></button>
@@ -19,11 +19,11 @@
                 @if ($data->image)
                     <div style="max-height: 350px; overflow:hidden;">
                         <img class="mt-3" src="{{ asset('storage/' . $data->image) }}" class="img-fluid "
-                            alt="{{ $data->category->name }}">
+                            alt="{{ $data->category->name ?? 'N/A' }}">
                     </div>
                 @else
                     <img class="mt-3" src="https://picsum.photos/1200/400?{{ $data->category->name }}" class="img-fluid "
-                        alt="{{ $data->category->name }}">
+                        alt="{{ $data->category->name  }}">
                 @endif
 
                 <article class="my-3 fs-5">

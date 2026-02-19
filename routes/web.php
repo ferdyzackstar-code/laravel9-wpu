@@ -27,12 +27,12 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about', [
-        "title"=>"About",
-        "active"=>"about",
-        "name"=>"Farel Ferdyawan",
-        "email"=>"ferdy.transafe@gmail.com",
-        "image"=>"ferdybatik.jpeg"
-    ]); 
+        'title' => 'About',
+        'active' => 'about',
+        'name' => 'Farel Ferdyawan',
+        'email' => 'ferdy.transafe@gmail.com',
+        'image' => 'ferdybatik.jpeg',
+    ]);
 })->name('about.index');
 
 // Halaman Banyak Post ==> index post nya
@@ -41,33 +41,32 @@ Route::get('/posts', [PostController::class, 'index']);
 // Halaman Single Post ==> satu per-satu post nya
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/categories', function() {
+Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
         'active' => 'categories',
-        'categories' => Category::all()
+        'categories' => Category::all(),
     ]);
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function()
-{
+Route::get('/dashboard', function () {
     return view('dashboard.index');
-}
-)->name('dashboard.index')->middleware('auth');
-
-Route::get('/dashboard-posts/checkSlug', [DashboardPostController::class, 'checkSlug'])
-    ->middleware('auth');
-    
-Route::resource('/dashboard-posts', DashboardPostController::class)
+})
+    ->name('dashboard.index')
     ->middleware('auth');
 
-Route::resource('/dashboard-categories', AdminCategoryController::class)
-    ->middleware('admin');
+Route::get('/dashboard-posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 
+Route::resource('/dashboard-posts', DashboardPostController::class)->middleware('auth');
+
+Route::get('/dashboard/categories/checkSlug', [AdminCategoryController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard-categories', AdminCategoryController::class)->middleware('can:admin');

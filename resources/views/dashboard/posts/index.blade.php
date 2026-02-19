@@ -37,7 +37,7 @@
                             @endif
 
                         </td>
-                        <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->category->name ?? 'Tidak ada Category' }}</td>
                         <td>
                             <a class="badge bg-info" href="{{ route('dashboard-posts.show', $post) }}">
                                 <i class="bi bi-search"></i>

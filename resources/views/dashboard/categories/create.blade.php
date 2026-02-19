@@ -6,75 +6,65 @@
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard-posts" method="POST" class="mb-5" enctype="multipart/form-data">
+        {{-- 1. Action harus ke route categories, bukan posts --}}
+        <form action="{{ route('dashboard-categories.store') }}" method="POST" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    required autofocus value="{{ old('title') }}">
-                @error('title')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                {{-- 2. Nama field kategori biasanya 'name', bukan 'title' --}}
+                <label for="name" class="form-label">Category Name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                    required autofocus value="{{ old('name') }}">
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
                     readonly required value="{{ old('slug') }}">
                 @error('slug')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="image" class="form-label">Category Image</label>
                 <img class="img-preview img-fluid mb-3 col-sm-5">
                 <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image" required onchange="previewImage()">
+                    name="image" onchange="previewImage()">
                 @error('image')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <a href="{{ route('dashboard-categories.index') }}" class="btn btn-secondary">Kembali</a>
-
             <button type="submit" class="btn btn-primary">Create Category</button>
         </form>
     </div>
 
     <script>
-        const title = document.querySelector('#title');
+        const name = document.querySelector('#name');
         const slug = document.querySelector('#slug');
 
-        title.addEventListener('change', function() {
-            fetch('/dashboard-posts/checkSlug?title=' + title.value)
+        // 3. Update Fetch URL agar mengarah ke controller Category
+        name.addEventListener('change', function() {
+            fetch('/dashboard/categories/checkSlug?name=' + name.value)
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });
 
-        document.addEventListener('trix-file-accept', function(e) {
-            e.preventDefault()
-        });
-
-        function previewImage()
-        {
+        function previewImage() {
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview');
-
-            imgPreview.style.display = 'block';;
+            imgPreview.style.display = 'block';
 
             const oFReader = new FileReader();
             oFReader.readAsDataURL(image.files[0]);
 
-            oFReader.onload = function(oFREvent)
-            {
+            oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
             }
         }
-
     </script>
 @endsection
