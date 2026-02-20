@@ -44,6 +44,9 @@
 
     {{-- Categories --}}
     <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
+
+    {{-- Authors --}}
+    <link rel="stylesheet" href="{{ asset('css/authors.css') }}">
 </head>
 
 

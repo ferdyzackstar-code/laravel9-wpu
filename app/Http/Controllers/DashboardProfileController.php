@@ -8,38 +8,53 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardProfileController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('dashboard.profile.index', [
             'title' => 'My Profile',
-            'user' => auth()->user()
+            'user' => auth()->user(),
         ]);
     }
 
-    public function update(Request $request) {
-    $user = auth()->user();
-    
-    $rules = [
-        'image' => 'image|file|max:1024' // Validasi file harus gambar & max 1MB
-    ];
+    public function update(Request $request)
+    {
+        $user = auth()->user();
 
-    $validatedData = $request->validate($rules);
+        // Tambahkan validasi 'required' agar tidak bisa submit kosong
+        $request->validate(
+            [
+                'image' => 'required|image|file|max:1024',
+            ],
+            [
+                // Pesan error custom dalam bahasa Indonesia
+                'image.required' => 'Select a photo first before pressing the button!',
+            ],
+        );
 
-    if($request->file('image')) {
-        // --- LOGIKA ANTI NYAMPAH DIMULAI ---
-        // Jika user sebelumnya SUDAH punya foto di folder storage
-        if($user->image) {
-            // Kita hapus file fisik foto lamanya dari folder storage/app/public/user-images
-            Storage::delete($user->image);
+        if ($request->file('image')) {
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('user-images');
+
+            User::where('id', $user->id)->update($validatedData);
+            return redirect('/dashboard/profile')->with('success', 'Profile picture updated!');
         }
-        // --- LOGIKA ANTI NYAMPAH SELESAI ---
-
-        // Baru simpan foto yang baru diupload
-        $validatedData['image'] = $request->file('image')->store('user-images');
     }
 
-    // Update database
-    User::where('id', $user->id)->update($validatedData);
+    public function destroy()
+    {
+        $user = auth()->user();
 
-    return redirect('/dashboard/profile')->with('success', 'Profile picture updated successfully!');
-}
+        // 1. Cek apakah user punya foto
+        if ($user->image) {
+            // 2. Hapus file fisik di storage agar tidak nyampah
+            Storage::delete($user->image);
+        }
+
+        // 3. Update database: set kolom image menjadi null
+        User::where('id', $user->id)->update(['image' => null]);
+
+        return redirect('/dashboard/profile')->with('success', 'Profile picture has been deleted!');
+    }
 }

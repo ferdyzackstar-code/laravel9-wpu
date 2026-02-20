@@ -91,3 +91,4 @@ Route::get('/authors', function() {
 // DASHBOARD PROFILE
 Route::get('/dashboard/profile', [DashboardProfileController::class, 'index']);
 Route::post('/dashboard/profile', [DashboardProfileController::class, 'update']);
+Route::delete('/dashboard/profile', [DashboardProfileController::class, 'destroy']);

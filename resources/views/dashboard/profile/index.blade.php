@@ -7,6 +7,20 @@
         </h1>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8 alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Opsional: Tampilkan pesan error jika validasi gagal --}}
+    @if (session()->has('error'))
+        <div class="alert alert-danger col-lg-8 alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="col-lg-8">
         <form method="post" action="/dashboard/profile" class="mb-5" enctype="multipart/form-data">
             @csrf
@@ -24,13 +38,28 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">
+                    {{ auth()->user()->image ? 'UPDATE PROFILE' : 'CREATE PROFILE' }}
+                </button>
+
+                {{-- Tombol Delete hanya akan muncul JIKA field image TIDAK NULL --}}
                 @if (auth()->user()->image)
-                    <i class="bi bi-arrow-clockwise"></i> UPDATE PROFILE
+                    <form action="/dashboard/profile" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger" onclick="return confirm('Are you sure to delete this profile?')">
+                            DELETE PROFILE PICTURE
+                        </button>
+                    </form>
                 @else
-                    <i class="bi bi-plus-circle"></i> CREATE PROFILE
+                    {{-- Opsional: Kasih tombol mati (disabled) biar user tau fitur itu ada tapi belum aktif --}}
+                    <button class="btn btn-secondary" disabled>
+                        NO IMAGE TO DELETE
+                    </button>
                 @endif
-            </button>
+            </div>
+
         </form>
     </div>
 

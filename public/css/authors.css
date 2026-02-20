@@ -1,0 +1,71 @@
+/* ===== AUTHOR PAGE STYLE ===== */
+.author-page {
+padding-bottom: 50px;
+}
+
+.author-card {
+position: relative;
+height: 450px; /* Samakan tinggi kartu */
+border-radius: 20px;
+background: #1f2933;
+transition: transform 0.3s ease;
+}
+
+.author-card:hover {
+transform: translateY(-10px);
+}
+
+.author-card img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* Efek Overlay Gelap (Sama seperti Home) */
+.author-card::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+z-index: 1;
+}
+
+/* Posisi Teks Melayang */
+.author-card .card-content {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+padding: 25px;
+text-align: center;
+z-index: 2;
+color: white;
+}
+
+.author-card h3 {
+font-size: 1.5rem;
+margin-bottom: 5px;
+}
+
+/* Tombol Kecil Ala Home */
+.btn-small {
+display: inline-block;
+padding: 8px 20px;
+background: #38bdf8;
+color: #020617;
+text-decoration: none;
+font-weight: 800;
+font-size: 12px;
+border-radius: 50px;
+letter-spacing: 1px;
+transition: 0.3s;
+}
+
+.btn-small:hover {
+background: white;
+color: #38bdf8;
+transform: scale(1.05);
+}
