@@ -12,8 +12,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('image')->nullable()->after('slug');
+        Schema::table('users', function (Blueprint $table) {
+            // Kita tambahkan kolom image, boleh kosong (nullable), letakkan setelah email
+            $table->string('image')->nullable()->after('email');
         });
     }
 
@@ -24,8 +25,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('image');
         });
     }
 };

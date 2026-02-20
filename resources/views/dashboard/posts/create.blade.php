@@ -61,9 +61,11 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <a href="{{ route('dashboard-posts.index') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('dashboard-posts.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-backspace-reverse"></i> Back</a>
 
-                <button type="submit" class="btn btn-primary">Create Post</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-square"></i> Create Post</button>
             </form>
         </div>
     </div>

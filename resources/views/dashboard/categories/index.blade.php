@@ -31,7 +31,7 @@
                         <td>{{ $category->name }}</td>
                         <td>
                             @if ($category->image == null)
-                                Tidak Ada Image
+                                No Images
                             @else
                                 <img src="{{ asset('storage/' . $category->image) }}" class="rounded" style="width: 150px">
                             @endif

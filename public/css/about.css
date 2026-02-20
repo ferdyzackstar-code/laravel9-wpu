@@ -247,3 +247,96 @@ color: #fff;
 background: #171515;
 color: #fff;
 }
+
+/* ===== SCHOOL SECTION ===== */
+.school-section {
+margin-top: 80px;
+margin-bottom: 50px;
+display: flex;
+justify-content: center;
+}
+
+.school-card {
+position: relative;
+width: 100%;
+max-width: 1100px; /* Lebih besar dari profil card */
+height: 450px;
+border-radius: 24px;
+overflow: hidden;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+transition: transform 0.4s ease;
+}
+
+.school-card:hover {
+transform: translateY(-5px);
+}
+
+.school-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* Overlay Hitam Transparan */
+.school-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to right, rgba(2, 6, 23, 0.9) 30%, rgba(2, 6, 23, 0.2) 100%);
+display: flex;
+align-items: center;
+padding: 60px;
+}
+
+.school-content {
+max-width: 600px;
+color: white;
+}
+
+.badge-education {
+background: #38bdf8;
+color: #020617;
+padding: 5px 15px;
+border-radius: 50px;
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 1px;
+}
+
+.school-name {
+font-size: 36px;
+font-weight: 800;
+margin-top: 15px;
+margin-bottom: 15px;
+text-transform: uppercase;
+}
+
+.school-desc {
+font-size: 18px;
+color: rgba(255, 255, 255, 0.8);
+line-height: 1.6;
+margin-bottom: 20px;
+}
+
+.school-location {
+font-weight: 600;
+color: #38bdf8;
+}
+
+/* Responsive untuk HP */
+@media (max-width: 768px) {
+.school-card {
+height: auto;
+min-height: 400px;
+}
+.school-overlay {
+padding: 30px;
+background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.9));
+align-items: flex-end;
+}
+.school-name {
+font-size: 24px;
+}
+}

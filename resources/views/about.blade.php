@@ -7,14 +7,23 @@
             <h1 class="about-title">FAREL FERDYAWAN</h1>
             <h2 class="about-subtitle">WEB DEVELOPER</h2>
             <p class="about-desc">
-                I am a web developer who loves building clean, fast,
-                and modern web applications using Laravel and Bootstrap.
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                anim id est laborum.
+                {{-- Versi Indonesia --}}
+                {{-- Saya seorang pelajar yang ingin menjadi web developer. Saya sangat senang dengan desain, kode, dan logika
+                pemrograman. Menggunakan Laravel dan Bootstrap, saya dapat membuat website dengan kreativitas saya.
+
+                Saat ini, saya fokus mendalami ekosistem Back-End sambil terus mengasah kemampuan Front-End agar bisa
+                membangun aplikasi web yang utuh. Bagi saya, setiap baris kode adalah kesempatan untuk belajar hal baru.
+                Saya bercita-cita untuk terus berinovasi dan berkontribusi dalam proyek-proyek digital yang bermanfaat bagi
+                orang banyak. --}}
+
+                {{-- English Version --}}
+                I'm a student aspiring to become a web developer. I'm passionate about design, code, and programming logic.
+                Using Laravel and Bootstrap, I can create websites with my creativity.
+
+                Currently, I'm focused on exploring the back-end ecosystem while continuing to hone my front-end skills to
+                build comprehensive web applications. For me, every line of code is an opportunity to learn something new. I
+                aspire to continue innovating and contributing to digital projects that benefit many people.
             </p>
         </div>
 
@@ -45,4 +54,26 @@
             </div>
         </div>
     </div>
+
+    {{-- SECTION SEKOLAH --}}
+    <section class="school-section">
+        <div class="school-card">
+            <img src="{{ asset('img/tarunabangsa.jpg') }}" alt="Sekolah Saya" class="school-img">
+
+            <div class="school-overlay">
+                <div class="school-content">
+                    <span class="badge-education">EDUCATION</span>
+                    <h2 class="school-name">SMK TARUNA BANGSA</h2> 
+                    <p class="school-desc">
+                        Di sinilah tempat saya menimba ilmu dan mengasah kemampuan di bidang Rekayasa Perangkat Lunak.
+                        Lingkungan yang mendukung dan fasilitas yang memadai membantu saya mengeksplorasi dunia
+                        web development lebih jauh, mulai dari logika dasar hingga framework modern.
+                    </p>
+                    <div class="school-location">
+                        <i class="bi bi-geo-alt-fill"></i> Bekasi Utara, Indonesia
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

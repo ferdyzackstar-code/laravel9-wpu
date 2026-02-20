@@ -31,7 +31,7 @@
                         <td>{{ $post->title }}</td>
                         <td>
                             @if ($post->image == null)
-                                Tidak Ada Image
+                                No Images
                             @else
                                 <img src="{{ asset('storage/' . $post->image) }}" class="rounded" style="width: 150px">
                             @endif
