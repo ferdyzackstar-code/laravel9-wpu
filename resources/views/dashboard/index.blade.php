@@ -43,7 +43,7 @@
                     <div>
                         <h6 class="mb-0 text-muted">Last Activity</h6>
                         <h4 class="fw-bold mb-0" style="font-size: 1.1rem;">
-                            {{ auth()->user()->posts->sortByDesc('created_at')->first()->created_at->diffForHumans() ?? 'No activity' }}
+                            {{ auth()->user()->posts->sortByDesc('created_at')->first()?->created_at->diffForHumans() ?? 'No activity' }}
                         </h4>
                     </div>
                 </div>

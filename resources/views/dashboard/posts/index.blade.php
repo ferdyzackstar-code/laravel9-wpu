@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($posts as $post)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $posts->firstItem() + $loop->index }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
                             @if ($post->image == null)
@@ -61,5 +61,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $posts->links() }}
     </div>
 @endsection

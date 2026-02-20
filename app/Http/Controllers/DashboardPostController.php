@@ -20,7 +20,7 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('dashboard.posts.index', [
-            'posts' => Post::where('user_id', auth()->user()->id)->get(),
+            'posts' => Post::where('user_id', auth()->user()->id)->paginate(5),
         ]);
     }
 
@@ -109,7 +109,6 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $edit = Post::find($id);
 
         $validatedData = $request->validate([
@@ -120,45 +119,21 @@ class DashboardPostController extends Controller
             'body' => 'required',
         ]);
 
-        // dd($request->oldImage);
-        //check if image is uploaded
         if ($request->hasFile('image')) {
-            //delete old image
-            Storage::delete($request->oldImage);
-
-            //upload new image
-            // $image = $request->file('image');
-            // $image->storeAs('posts', $image->hashName());
-            //baru
+            // PERBAIKAN: Cek dulu apakah oldImage ada isinya sebelum di-delete
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
 
             $validatedData['image'] = $request->file('image')->store('post-images');
-            $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
-
-            //update product with new image
-            $edit->update([
-                'image' => $validatedData['image'],
-                'title' => $request->title,
-                'slug' => $request->slug,
-                'category_id' => $request->category_id,
-                'excerpt' => $validatedData['excerpt'],
-                'body' => $request->body,
-            ]);
-        } else {
-            $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
-
-            // dd($validatedData['excerpt']);
-
-            $edit->update([
-                'title' => $request->title,
-                'slug' => $request->slug,
-                'category_id' => $request->category_id,
-                'excerpt' => $validatedData['excerpt'],
-                'body' => $request->body,
-            ]);
         }
 
-        return redirect('/dashboard-posts')->with('success', 'New Post Has Been Updated!');
-        //
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        // Tips: Jangan update manual satu-satu kalau sudah di-validate
+        $edit->update($validatedData);
+
+        return redirect('/dashboard-posts')->with('success', 'Post Has Been Updated!');
     }
 
     /**

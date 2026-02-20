@@ -22,56 +22,69 @@
         </div>
     @endif
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/profile" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/profile" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="image" class="form-label">Profile Picture</label>
-                @if ($user->image)
-                    <img src="{{ asset('storage/' . $user->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+
+                {{-- LOGIKA MENAMPILKAN FOTO YANG SUDAH ADA --}}
+                @if (auth()->user()->image)
+                    {{-- Jika user sudah punya foto, tampilkan fotonya --}}
+                    <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                        class="img-preview img-fluid mb-3 col-sm-5 d-block"
+                        style="max-height: 300px; object-fit: cover; border-radius: 10px;">
                 @else
-                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    {{-- Jika belum ada, siapkan tempat kosong untuk preview nanti --}}
+                    <img class="img-preview img-fluid mb-3 col-sm-5" style="border-radius: 10px;">
                 @endif
-                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
-                    name="image" onchange="previewImage()">
+
+                <input class="form-control @error('image') is-invalid @enderror" type="file" id="imageInput"
+                    name="image" onchange="previewAndEnable()">
+
                 @error('image')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
             </div>
 
-            <div class="mt-3">
-                <button type="submit" class="btn btn-primary">
-                    {{ auth()->user()->image ? 'UPDATE PROFILE' : 'CREATE PROFILE' }}
-                </button>
-
-                {{-- Tombol Delete hanya akan muncul JIKA field image TIDAK NULL --}}
-                @if (auth()->user()->image)
-                    <form action="/dashboard/profile" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Are you sure to delete this profile?')">
-                            DELETE PROFILE PICTURE
-                        </button>
-                    </form>
-                @else
-                    {{-- Opsional: Kasih tombol mati (disabled) biar user tau fitur itu ada tapi belum aktif --}}
-                    <button class="btn btn-secondary" disabled>
-                        NO IMAGE TO DELETE
-                    </button>
-                @endif
-            </div>
-
+            {{-- Tombol Submit kita kasih id="submitBtn" dan awalnya disabled --}}
+            <button type="submit" id="submitBtn" class="btn btn-primary" disabled>
+                {{ auth()->user()->image ? 'UPDATE PROFILE' : 'CREATE PROFILE' }}
+            </button>
         </form>
+
+        {{-- Tombol Delete tetap pakai logika PHP --}}
+        @if (auth()->user()->image)
+            <form action="/dashboard/profile" method="post" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="btn btn-danger mt-2">DELETE PROFILE</button>
+            </form>
+        @endif
     </div>
 
     <script>
-        function previewImage() {
-            const image = document.querySelector('#image');
+        function previewAndEnable() {
+            const image = document.querySelector('#imageInput');
             const imgPreview = document.querySelector('.img-preview');
+            const submitBtn = document.querySelector('#submitBtn');
+
+            // 1. Tampilkan Preview
             imgPreview.style.display = 'block';
             const oFReader = new FileReader();
             oFReader.readAsDataURL(image.files[0]);
+
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
+            };
+
+            // 2. Logika Menyalakan Tombol
+            // Jika ada file yang dipilih, tombol nyala. Jika tidak, tetap mati.
+            if (image.files.length > 0) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
             }
         }
     </script>
