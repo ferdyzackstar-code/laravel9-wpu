@@ -68,8 +68,13 @@
                                     </a>
                                 </div>
 
-                                <img src="https://i.pravatar.cc/400?u={{ $author->username }}" class="card-img-top"
-                                    alt="{{ $author->name }}" style="height: 400px; object-fit: cover;">
+                                {{-- Logika Foto Profil --}}
+                                @if ($author->image)
+                                    <img src="{{ asset('storage/' . $author->image) }}" alt="{{ $author->name }}">
+                                @else
+                                    <img src="https://i.pravatar.cc/400?u={{ $author->username }}"
+                                        alt="{{ $author->name }}">
+                                @endif
 
                                 <div class="card-content">
                                     <h3 class="fw-bold">{{ $author->name }}</h3>

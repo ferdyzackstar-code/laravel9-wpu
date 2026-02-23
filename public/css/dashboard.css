@@ -263,3 +263,74 @@ body.dark-mode .sidebar-heading {
     border-radius: 10px;
     display: block;
 }
+
+/* --- Sidebar (Gabungan Glassmorphism & Fixed) --- */
+.sidebar {
+    /* Properti Fixed agar ikut ke scroll */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 60px 0 0; /* Sesuaikan angka ini dengan tinggi navbar kamu */
+    
+    /* Properti Tampilan punya Farel (Glassmorphism) */
+    width: 15%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+/* Dark Mode Sidebar tetap Glassmorphism tapi gelap */
+body.dark-mode .sidebar {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Biar konten di dalam sidebar bisa di-scroll kalau menunya kepanjangan */
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 60px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
+
+/* Responsive: Kalau di HP jangan melayang/fixed biar ga nutupin layar */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding-top: 0;
+    }
+}
+
+/* Styling Pagination agar sesuai tema */
+.pagination {
+    margin-top: 20px;
+}
+
+.page-item.active .page-link {
+    background-color: #3b82f6 !important; /* Warna biru tema kamu */
+    border-color: #3b82f6 !important;
+}
+
+.page-link {
+    background-color: rgba(255, 255, 255, 0.05); /* Sedikit transparan */
+    color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+/* Khusus Dark Mode */
+body.dark-mode .page-link {
+    background-color: rgba(30, 41, 59, 0.5);
+    color: #f1f5f9;
+}
+
+.page-link:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}

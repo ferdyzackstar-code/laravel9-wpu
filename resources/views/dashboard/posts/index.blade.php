@@ -33,7 +33,8 @@
                             @if ($post->image == null)
                                 No Images
                             @else
-                                <img src="{{ asset('storage/' . $post->image) }}" class="rounded" style="width: 150px">
+                                <img src="{{ asset('storage/' . $post->image) }}" class="rounded shadow-sm"
+                                    style="width: 80px; height: 50px; object-fit: cover;">
                             @endif
 
                         </td>

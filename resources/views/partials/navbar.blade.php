@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg portfolio-navbar">
+<nav class="navbar navbar-expand-lg portfolio-navbar fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">Ferdy Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
